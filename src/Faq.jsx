@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
-const Faq = ({ faq: { id, question, answer } }) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
+const Faq = ({ faq: { id, question, answer, isOpen }, toggleQuestions}) => {
+  // const [open, setOpen] = useState(false);
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleToggle = () => {
-    setOpen(!open);
+    // setOpen(!open);
+    toggleQuestions(id);
   };
 
   return (
@@ -16,14 +17,14 @@ const Faq = ({ faq: { id, question, answer } }) => {
         onClick={handleToggle}
         className="flex justify-between items-center border select-none active:scale-90 duration-500 border-black p-5"
       >
-        <h1 className={`text-2xl ${open ? "font-normal" : "font-bold"}`}>{question}</h1>
+        <h1 className={`text-2xl ${isOpen ? "font-normal" : "font-bold"}`}>{question}</h1>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className={`size60 duration-500 w-6 h-6 ${open ? "rotate-180" : ""}`}
+          className={`size60 duration-500 w-6 h-6 ${isOpen ? "rotate-180" : ""} `}
         >
           <path
             strokeLinecap="round"
@@ -33,7 +34,7 @@ const Faq = ({ faq: { id, question, answer } }) => {
         </svg>
       </div>
       <p
-        className={`text-lg bg-gray-200 p-5 ${open === false ? "hidden" : ""}`}
+        className={`text-lg bg-gray-200 p-5 ${isOpen ? "" : "hidden"} `}
       >
         {answer}
       </p>
